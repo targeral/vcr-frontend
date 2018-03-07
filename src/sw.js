@@ -1,9 +1,26 @@
-console.log('aaaa', self)
-self.addEventListener('install', e => {
-  console.log('install')
-  e.waitUntil()
+/* eslint-disable */
+// TODO: Replace Xs.
+// require('workbox-sw')
+importScripts('/node_modules/workbox-sw/build/importScripts/workbox-sw.prod.v2.1.3.js');
+// Note: Ignore the error that Glitch raises about WorkboxSW being undefined.
+const workbox = new WorkboxSW({
+  skipWaiting: true,
+  clientsClaim: true
 })
 
-self.addEventListener('activate', () => {
-  console.log('active')
+
+workbox.router.registerRoute(
+  new RegExp('https://api.github.com/'),
+  workbox.strategies.staleWhileRevalidate()
+)
+
+
+self.addEventListener('push', (event) => {
+  const title = 'Get Started With Workbox';
+  const options = {
+    body: event.data.text()
+  }
+  event.waitUntil(self.registration.showNotification(title, options));
 })
+
+workbox.precache([])

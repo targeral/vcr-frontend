@@ -33,7 +33,7 @@ const jsRule = {
   include: [resolve('src')]
 }
 
-console.log(resolve('src/sw.js'))
+// console.log(resolve('src/sw.js'))
 
 const pictureRule = {
 	test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -55,8 +55,8 @@ const fontRule = {
 
 module.exports = {
   entry: {
-    app: './src/main.js',
-    sw: './src/sw.js'
+    'static/js/app': './src/main.js',
+		// 'sw': './src/sw.js'
   },
   output: {
     path: config.build.assetsRoot,
