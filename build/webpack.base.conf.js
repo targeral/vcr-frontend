@@ -72,6 +72,7 @@ module.exports = {
       vue$: 'vue/dist/vue.common.js',
       src: resolve('/src'),
       '@components': resolve('/src/components'),
+      '@pages': resolve('/src/pages'),
       assets: resolve('/src/assets')
     }
   },
