@@ -1,16 +1,11 @@
 <template>
   <div id="chat">
-    <p>This is chat page</p>
     <!-- <chat-list></chat-list> -->
     <!-- <chat-room></chat-room> -->
     <!-- <chat-search></chat-search> -->
-    <flex direction="column">
-      <flex-item>
-        <chat-search></chat-search>
-      </flex-item>
-      <flex-item>
-        <chat-list></chat-list>
-      </flex-item>
+    <flex class="chat-container" direction="column">
+      <chat-search class="chat-search"></chat-search>
+      <chat-list></chat-list>
     </flex>
   </div>
 </template>
@@ -34,10 +29,31 @@ export default {
     ChatList,
     ChatRoom,
     ChatSearch
+  },
+  updated () {
+    console.log('chat updated')
   }
 }
 </script>
 
 <style lang="less">
+.chat-container {
+  height: 100vh;
+  width: 100vw;
+  background: #ccc;
+  overflow: hidden;
 
+  & .chat-search {
+    height: 7vh;
+    background: #ddd;
+    overflow: hidden;
+  }
+
+  & .chat-list {
+    flex: 1 1 0;
+    min-height: 93vh;
+    background: #eee;
+    overflow: hidden;
+  }
+}
 </style>

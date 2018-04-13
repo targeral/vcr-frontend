@@ -1,12 +1,26 @@
 <template>
   <div class="chat-search">
-    <p>This is chat search component</p>
+    <search-bar
+      :placeholder="placeholder"
+      :maxLength="maxLength"
+    ></search-bar>
   </div>
 </template>
 
 <script>
+  import { SearchBar } from '@components'
   export default {
-    name: 'chat-search'
+    name: 'chat-search',
+    data () {
+      return {
+        placeholder: 'Search',
+        maxLength: 8,
+        value: 'test'
+      }
+    },
+    components: {
+      SearchBar
+    }
   }
 </script>
 
