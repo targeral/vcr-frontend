@@ -1,5 +1,7 @@
 import Demo from './demo'
+import Chat from './chat'
 
-export {
-  Demo
+export default {
+  Demo,
+  Chat
 }

@@ -1,8 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import {
+// import {
+//   Demo,
+//   Chat
+// } from '@pages'
+
+// import {
+//   Demo,
+//   Chat
+// } from '@pages'
+
+import pages from '@pages'
+
+const {
+  Chat,
   Demo
-} from '@pages'
+} = pages
 
 Vue.use(Router)
 
@@ -11,6 +24,10 @@ let router = new Router({
     {
       path: '/demo',
       component: Demo
+    },
+    {
+      path: '/chat',
+      component: Chat
     }
   ]
 })

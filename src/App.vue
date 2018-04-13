@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import test from '@components/colordemo'
+// import test from '@components/colordemo'
 
 export default {
   name: 'App',
@@ -13,9 +13,9 @@ export default {
     return {
       name: 'targeral11'
     }
-  },
-  components: {
-    test
   }
+  // components: {
+  //   test
+  // }
 }
 </script>
