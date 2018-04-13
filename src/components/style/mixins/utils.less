@@ -1,0 +1,21 @@
+// Encoded SVG Background
+.encoded-svg-background-i(@svg) {
+  @url: `encodeURIComponent(@{svg})`;
+  
+  background-image: url("data:image/svg+xml;charset=utf-8,@{url}");
+}
+
+// 文本溢出，出现省略效果
+.ellipsis() {
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 背景渐变效果
+.background(@start: #ffffff, @end: #000000) {
+  background: @end;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(@start), to(@end)); /* Saf4+, Chrome */
+  background-image: linear-gradient(@start, @end);
+}
