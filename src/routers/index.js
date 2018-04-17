@@ -14,7 +14,8 @@ import pages from '@pages'
 
 const {
   Chat,
-  Demo
+  Demo,
+  Dashboard
 } = pages
 
 Vue.use(Router)
@@ -28,6 +29,10 @@ let router = new Router({
     {
       path: '/chat',
       component: Chat
+    },
+    {
+      path: '/dashboard',
+      component: Dashboard
     }
   ]
 })

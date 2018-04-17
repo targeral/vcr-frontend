@@ -20,7 +20,11 @@
         v-if="extraEnable"
         :class="`${prefixCls}-extra`"
       >
-        {{ extra }}
+        <slot
+          name="extra"
+        >
+          {{ extra }}
+        </slot>
       </div>
       <div
         v-if="arrow"
@@ -116,7 +120,8 @@
         ]
       },
       extraEnable () {
-        return this.extra !== undefined
+        console.log(this.extra, this.$slots)
+        return this.extra !== undefined || this.$slots.extra !== undefined
       },
       hasSlot () {
         let slotKeys = Object.keys(this.$slots)

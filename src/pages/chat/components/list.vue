@@ -1,11 +1,15 @@
 <template>
   <div class="chat-list">
     <list class="my-list">
-      <item platform="android" extra="10:30" :multipleLine="multipleLine" v-for="index of items">
+      <item platform="android" class="chat-item" :multipleLine="multipleLine" v-for="index of items">
         <Avatar :src="url" size="large" />
         <section class="message">
           <h2>nodejs</h2>
           <p>地球：啊啊啊啊啊</p>
+        </section>
+        <section class="chat-extra" slot="extra">
+          <time>10:30</time>
+          <Badge size="large" :text="count" />
         </section>
       </item>
     </list>
@@ -13,7 +17,7 @@
 </template>
 
 <script>
-  import { List, Avatar } from '@components'
+  import { List, Avatar, Badge } from '@components'
 
   const Item = List.Item
 
@@ -24,13 +28,15 @@
         extra: 'extra content',
         items: new Array(30).fill(0),
         url: 'http://p1.music.126.net/qvCYY458FgBaYYzdbb-wiw==/5927467185451677.jpg',
-        multipleLine: true
+        multipleLine: false,
+        count: 10
       }
     },
     components: {
       List,
       Item,
-      Avatar
+      Avatar,
+      Badge
     },
     methods: {
       renderHeader () {
@@ -43,6 +49,10 @@
 <style lang="less">
 .my-list {
   overflow: auto;
+
+  .chat-item {
+    height: 65px;
+  }
 
   .list-item {
     display: flex;
@@ -63,6 +73,12 @@
       font-size: 12px;
       color: #ccc;
     }
+  }
+  .chat-extra {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
   }
 }
 </style>
