@@ -1,6 +1,6 @@
 import Flex from './flex'
 import FlexItem from './flexitem'
-import './style/index.js'
+import './style'
 
 Flex.Item = FlexItem
 

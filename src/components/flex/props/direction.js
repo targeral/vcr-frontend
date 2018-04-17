@@ -1,4 +1,6 @@
-import { isString } from './utils'
+import { isString } from '../../utils'
+
+console.log(isString)
 
 const VALUE = [
   'row',

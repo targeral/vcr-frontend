@@ -37,23 +37,24 @@ export default {
 </script>
 
 <style lang="less">
+body {
+  margin: 0;
+  padding: 0;
+}
 .chat-container {
   height: 100vh;
   width: 100vw;
-  background: #ccc;
   overflow: hidden;
 
   & .chat-search {
     height: 7vh;
-    background: #ddd;
     overflow: hidden;
   }
 
   & .chat-list {
     flex: 1 1 0;
-    min-height: 93vh;
-    background: #eee;
-    overflow: hidden;
+    height: 93vh;
+    overflow: auto;
   }
 }
 </style>

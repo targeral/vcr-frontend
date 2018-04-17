@@ -20,12 +20,13 @@
       <input
         type="search"
         :class="`${prefixCls}-value`"
-        v-model="value_"
+        :value="value_"
         :disabled="disabled"
         :placeholder="placeholder"
         @change="onChange"
         @focus="onFocus"
         @blur="onBlur"
+        @input="updateInputValue"
         ref="inputRef"
         :maxlength="maxLength"
       />
@@ -108,7 +109,17 @@
         ]
       }
     },
+    watch: {
+      value (value) {
+        this.value_ = value
+      }
+    },
     methods: {
+      updateInputValue ($event) {
+        let value = $event.target.value
+        this.value_ = value
+        this.$emit('input', value)
+      },
       onSubmit (e) {
         e.preventDefault()
         this.$refs.inputRef.blur()
@@ -151,6 +162,7 @@
       },
       doClear (blurFromOnClear = true) {
         this.blurFromOnClear = blurFromOnClear
+        console.log('aaa', this.value !== undefined)
         if (!(this.value !== undefined)) {
           this.value_ = ''
         }
