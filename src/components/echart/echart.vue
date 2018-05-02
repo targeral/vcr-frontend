@@ -8,21 +8,59 @@
     name: 'echart',
     data () {
       return {
-        chart: null,
-        seriesData: [5, 20, 36, 10, 10, 20],
-        timer: null
+        chart: null
+      }
+    },
+    props: {
+      title: {
+        type: String,
+        default () {
+          return 'echart'
+        }
+      },
+      loading: {
+        type: Boolean,
+        default () {
+          return false
+        }
+      },
+      xAxis: {
+        type: Array,
+        default () {
+          return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        }
+      },
+      seriesData: {
+        type: Array,
+        default () {
+          return [5, 20, 36, 10, 10, 20]
+        }
+      }
+    },
+    watch: {
+      seriesData (value) {
+        this.updateChart()
+      },
+      loading (value) {
+        value && this.chart.showLoading()
+        !value && this.chart.hideLoading()
       }
     },
     methods: {
       updateChart () {
-        this.seriesData[this.seriesData.length - 1]++
         this.chart.setOption({
           title: {
-            text: 'dashboard'
+            text: this.title
           },
-          tooltip: {},
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross',
+              snap: true
+            }
+          },
           xAxis: {
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: this.xAxis
           },
           yAxis: {
             type: 'value'
@@ -37,14 +75,8 @@
     },
     mounted () {
       this.chart = echart.init(this.$refs.echartDom)
-      this.chart.showLoading()
-      this.timer = setInterval(() => {
-        this.chart.hideLoading()
-        this.updateChart()
-      }, 1000)
-    },
-    destroyed () {
-      clearInterval(this.timer)
+      this.loading && this.chart.showLoading()
+      !this.loading && this.updateChart()
     }
   }
 </script>
