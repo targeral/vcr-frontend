@@ -1,6 +1,6 @@
 <template>
   <svg :class="cls">
-    <use :xlink-href="xlinkHref"></use>
+    <use :href="xlinkHref"></use>
   </svg>  
 </template>
 <script>
