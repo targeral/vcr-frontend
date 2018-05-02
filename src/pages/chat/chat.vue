@@ -1,17 +1,21 @@
 <template>
   <div id="chat">
-    <!-- <chat-list></chat-list> -->
-    <!-- <chat-room></chat-room> -->
-    <!-- <chat-search></chat-search> -->
     <flex class="chat-container" direction="column">
-      <chat-search class="chat-search"></chat-search>
-      <chat-list></chat-list>
+      <Navbar class="chat-navbar">
+        <Icon slot="icon" type="left" />
+        <Icon slot="rightContent" type="ellipsis" />
+        消息
+      </Navbar>
+      <div class="chat-room-list">
+        <chat-search class="chat-search"></chat-search>
+        <chat-list></chat-list>
+      </div>
     </flex>
   </div>
 </template>
 
 <script>
-import { Flex } from '@components'
+import { Flex, Navbar, Icon } from '@components'
 import components from './components'
 console.log(Flex)
 
@@ -26,9 +30,11 @@ export default {
   components: {
     Flex,
     FlexItem,
+    Navbar,
     ChatList,
     ChatRoom,
-    ChatSearch
+    ChatSearch,
+    Icon
   },
   updated () {
     console.log('chat updated')
@@ -45,16 +51,13 @@ body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-
+  & .chat-navbar,
   & .chat-search {
     height: 7vh;
-    overflow: hidden;
   }
-
-  & .chat-list {
+  & .chat-room-list {
     flex: 1 1 0;
-    height: 93vh;
-    overflow: auto;
+    height: 86vh;
   }
 }
 </style>

@@ -25,6 +25,17 @@ const lessRule = {
 	})
 }
 
+const cssRule = {
+	test: /\.css/,
+	use: ExtractTextPlugin.extract({
+		fallback: 'style-loader',
+		use: [
+			'css-loader',
+			'postcss-loader'
+		]
+	})
+}
+
 module.exports = merge(baseWebpackConfig, {
   entry: {
 		app: './src/main.js',
@@ -38,6 +49,7 @@ module.exports = merge(baseWebpackConfig, {
 	},
 	module: {
 		rules: [
+			cssRule,
 			lessRule
 		]
 	},

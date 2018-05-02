@@ -5,8 +5,6 @@
 </template>
 
 <script>
-// import test from '@components/colordemo'
-
 export default {
   name: 'App',
   data () {
@@ -14,8 +12,5 @@ export default {
       name: 'targeral11'
     }
   }
-  // components: {
-  //   test
-  // }
 }
 </script>

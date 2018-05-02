@@ -1,27 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import {
-//   Demo,
-//   Chat
-// } from '@pages'
-
-// import {
-//   Demo,
-//   Chat
-// } from '@pages'
-
 import pages from '@pages'
 
 const {
   Chat,
   Demo,
-  Dashboard
+  Dashboard,
+  Home,
+  FourZeroFour
 } = pages
 
 Vue.use(Router)
 
 let router = new Router({
   routes: [
+    {
+      path: '/',
+      component: Home
+    },
     {
       path: '/demo',
       component: Demo
@@ -33,6 +29,10 @@ let router = new Router({
     {
       path: '/dashboard',
       component: Dashboard
+    },
+    {
+      path: '*',
+      component: FourZeroFour
     }
   ]
 })

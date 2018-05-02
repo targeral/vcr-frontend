@@ -1,23 +1,27 @@
 <template>
-  <div class="chat-list">
-    <list class="my-list">
-      <item platform="android" class="chat-item" :multipleLine="multipleLine" v-for="index of items">
-        <Avatar :src="url" size="large" />
+  <PullToRefresh
+    @onRefresh="onRefresh"
+    :refreshing="refreshing"
+    class="chat-list"
+  >
+    <list>
+      <item platform="android" class="chat-item" :multipleLine="multipleLine" v-for="item of list" :key="item.title">
+        <Avatar :src="item.avatarUrl" size="large" />
         <section class="message">
-          <h2>nodejs</h2>
-          <p>地球：啊啊啊啊啊</p>
+          <h2>{{ item.title }}</h2>
+          <p>{{ item.currentMessage }}</p>
         </section>
         <section class="chat-extra" slot="extra">
-          <time>10:30</time>
-          <Badge size="large" :text="count" />
+          <time>{{ item.time }}</time>
+          <Badge size="large" :text="item.count" />
         </section>
       </item>
     </list>
-  </div>  
+  </PullToRefresh>
 </template>
 
 <script>
-  import { List, Avatar, Badge } from '@components'
+  import { List, Avatar, Badge, PullToRefresh } from '@components'
 
   const Item = List.Item
 
@@ -29,27 +33,45 @@
         items: new Array(30).fill(0),
         url: 'http://p1.music.126.net/qvCYY458FgBaYYzdbb-wiw==/5927467185451677.jpg',
         multipleLine: false,
-        count: 10
+        count: 10,
+        refreshing: false
+      }
+    },
+    computed: {
+      list () {
+        console.log(this.$store.state)
+        return this.$store.state.chat.list
       }
     },
     components: {
       List,
       Item,
       Avatar,
-      Badge
+      Badge,
+      PullToRefresh
     },
     methods: {
       renderHeader () {
         return 'Basic Style'
+      },
+      onRefresh () {
+        console.log('onrefresh')
+        this.refreshing = true
+        setTimeout(() => {
+          this.refreshing = false
+        }, 3000)
       }
+    },
+    mounted () {
+      console.log(this)
     }
   }
 </script>
 
 <style lang="less">
-.my-list {
+.chat-list {
+  height: 100%;
   overflow: auto;
-
   .chat-item {
     height: 65px;
   }

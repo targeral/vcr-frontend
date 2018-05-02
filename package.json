@@ -24,8 +24,10 @@
   "dependencies": {
     "axios": "^0.18.0",
     "echarts": "^4.0.4",
+    "normalize.css": "^8.0.0",
     "vue": "^2.5.13",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^8.0.0",
@@ -50,14 +52,15 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "friendly-errors-webpack-plugin": "^1.6.1",
     "file-loader": "^1.1.11",
+    "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "github:webpack-contrib/html-webpack-plugin",
     "less": "^2.7.2",
     "less-loader": "^4.0.6",
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.1",
     "postcss-url": "^7.3.1",
+    "qs": "^6.5.1",
     "rucksack-css": "^1.0.2",
     "style-loader": "^0.20.2",
     "uglifyjs-webpack-plugin": "^1.2.2",
