@@ -120,7 +120,6 @@
         ]
       },
       extraEnable () {
-        console.log(this.extra, this.$slots)
         return this.extra !== undefined || this.$slots.extra !== undefined
       },
       hasSlot () {
@@ -130,7 +129,6 @@
     },
     methods: {
       onClick (ev) {
-        console.log(ev.currentTarget)
         const { platform } = this
         const isAndroid = platform === 'android'
         if (isAndroid) {
@@ -141,7 +139,6 @@
           let Item = ev.currentTarget
           let RippleWidth = Math.max(Item.offsetHeight, Item.offsetWidth)
           const ClientRect = ev.currentTarget.getBoundingClientRect()
-          console.log(ev.clientX, ClientRect.left, Item.offsetWidth)
           let pointX = ev.clientX - ClientRect.left - Item.offsetWidth / 2
           let pointY = ev.clientY - ClientRect.top - Item.offsetWidth / 2
           const coverRippleStyle = {
