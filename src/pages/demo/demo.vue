@@ -17,12 +17,40 @@
         <v-col class="grid-col" :span="6">col-6</v-col>
       </v-row>
     </section> -->
+    <input type="text" onkeypress="console.log('a' + event.keyCode)">
     <Gesture
       direction="all"
       enablePinch
       enableRotate
       @onTap="log"
-     
+      @onPress="log('onPress', $event)"
+      @onPressUp="log('onPressUp', $event)"
+      @onSwipe="log('onSwipe', $event)"
+      @onSwipeLeft="log('onSwipeLeft', $event)"
+      @onSwipeRight="log('onSwipeRight', $event)"
+      @onSwipeUp="log('onSwipeUp', $event)"
+      @onSwipeDown="log('onSwipeDown', $event)"
+      @onPinch="log('onPinch', $event)"
+      @onPinchStart="log('onPinchStart', $event)"
+      @onPinchMove="log('onPinchMove', $event)"
+      @onPinchEnd="log('onPinchEnd', $event)"
+      @onPinchCancel="log('onPinchCancel', $event)"
+      @onPinchIn="log('onPinchIn', $event)"
+      @onPinchOut="log('onPinchOut', $event)"
+      @onRotate="log('onRotate', $event)"
+      @onRotateStart="log('onRotateStart', $event)"
+      @onRotateMove="log('onRotateMove', $event)"
+      @onRotateEnd="log('onRotateEnd', $event)"
+      @onRotateCancel="log('onRotateCancel', $event)"
+      @onPan="log('onPan', $event)"
+      @onPanStart="log('onPanStart', $event)"
+      @onPanMove="log('onPanMove', $event)"
+      @onPanEnd="log('onPanEnd', $event)"
+      @onPanCancel="log('onPanCancel', $event)"
+      @onPanLeft="log('onPanLeft', $event)"
+      @onPanRight="log('onPanRight', $event)"
+      @onPanUp="log('onPanUp', $event)"
+      @onPanDown="log('onPanDown', $event)"
     >
       <div :style="style">1</div>
     </Gesture>
@@ -32,7 +60,8 @@
 <script>
 import VRow from '@components/row'
 import VCol from '@components/col'
-import { Gesture } from '@components'
+// import { Gesture } from '@components'
+import Gesture from 'euv-gesture'
 
 export default {
   name: 'demo',
@@ -59,11 +88,11 @@ export default {
     test () {
       console.log('touch start')
     },
-    log (...args) {
+    log (type, ...args) {
       console.log(args)
-      // window.requestAnimationFrame(() => {
-      //   this.doTransform(type, ...args)
-      // })
+      window.requestAnimationFrame(() => {
+        this.doTransform(type, ...args)
+      })
     },
     doTransform (type, ...args) {
       if (type === 'onPinch') {

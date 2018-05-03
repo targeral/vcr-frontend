@@ -24,6 +24,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "echarts": "^4.0.4",
+    "euv-gesture": "0.0.1",
     "normalize.css": "^8.0.0",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
