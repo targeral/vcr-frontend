@@ -6,34 +6,59 @@ const config = require('../config')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const workboxPlugin = require('workbox-webpack-plugin')
+const devMode = process.env.NODE_ENV !== 'production'
 
+// const lessRule = {
+// 	test: /\.less$/,
+// 	use: ExtractTextPlugin.extract({
+// 		fallback: 'style-loader',
+// 		use: [
+// 			'css-loader',
+// 			'postcss-loader',
+// 			{
+// 				loader: 'less-loader',
+// 				options: {
+// 					javascriptEnabled: true
+// 				}
+// 			}
+// 		]
+// 	})
+// }
 const lessRule = {
-	test: /\.less$/,
-	use: ExtractTextPlugin.extract({
-		fallback: 'style-loader',
-		use: [
-			'css-loader',
-			'postcss-loader',
-			{
-				loader: 'less-loader',
-				options: {
-					javascriptEnabled: true
-				}
+	test: /\.less/,
+	use: [
+		devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+		'css-loader',
+		'postcss-loader',
+		{
+			loader: 'less-loader',
+			options: {
+				javascriptEnabled: true
 			}
-		]
-	})
+		}
+	]
 }
+
+// const cssRule = {
+// 	test: /\.css/,
+// 	use: ExtractTextPlugin.extract({
+// 		fallback: 'style-loader',
+// 		use: [
+// 			'css-loader',
+// 			'postcss-loader'
+// 		]
+// 	})
+// }
 
 const cssRule = {
 	test: /\.css/,
-	use: ExtractTextPlugin.extract({
-		fallback: 'style-loader',
-		use: [
-			'css-loader',
-			'postcss-loader'
-		]
-	})
+	use: [
+		devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+		'css-loader',
+		'postcss-loader'
+	]
 }
 
 module.exports = merge(baseWebpackConfig, {
@@ -60,7 +85,10 @@ module.exports = merge(baseWebpackConfig, {
 				NODE_ENV: config.dev.env
 			}
 		}),
-		new ExtractTextPlugin('vcr.css'),
+		// new ExtractTextPlugin('vcr.css'),
+		new MiniCssExtractPlugin({
+			filename: 'vcr.css'
+		}),
 		new HtmlWebpackPlugin({
 			inject: true,
 			filename: path.join(__dirname, '../dist/index.html'),

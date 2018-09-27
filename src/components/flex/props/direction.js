@@ -1,7 +1,5 @@
 import { isString } from '../../utils'
 
-console.log(isString)
-
 const VALUE = [
   'row',
   'row-reverse',

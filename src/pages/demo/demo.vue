@@ -17,115 +17,61 @@
         <v-col class="grid-col" :span="6">col-6</v-col>
       </v-row>
     </section> -->
-    <input type="text" onkeypress="console.log('a' + event.keyCode)">
-    <Gesture
-      direction="all"
-      enablePinch
-      enableRotate
-      @onTap="log"
-      @onPress="log('onPress', $event)"
-      @onPressUp="log('onPressUp', $event)"
-      @onSwipe="log('onSwipe', $event)"
-      @onSwipeLeft="log('onSwipeLeft', $event)"
-      @onSwipeRight="log('onSwipeRight', $event)"
-      @onSwipeUp="log('onSwipeUp', $event)"
-      @onSwipeDown="log('onSwipeDown', $event)"
-      @onPinch="log('onPinch', $event)"
-      @onPinchStart="log('onPinchStart', $event)"
-      @onPinchMove="log('onPinchMove', $event)"
-      @onPinchEnd="log('onPinchEnd', $event)"
-      @onPinchCancel="log('onPinchCancel', $event)"
-      @onPinchIn="log('onPinchIn', $event)"
-      @onPinchOut="log('onPinchOut', $event)"
-      @onRotate="log('onRotate', $event)"
-      @onRotateStart="log('onRotateStart', $event)"
-      @onRotateMove="log('onRotateMove', $event)"
-      @onRotateEnd="log('onRotateEnd', $event)"
-      @onRotateCancel="log('onRotateCancel', $event)"
-      @onPan="log('onPan', $event)"
-      @onPanStart="log('onPanStart', $event)"
-      @onPanMove="log('onPanMove', $event)"
-      @onPanEnd="log('onPanEnd', $event)"
-      @onPanCancel="log('onPanCancel', $event)"
-      @onPanLeft="log('onPanLeft', $event)"
-      @onPanRight="log('onPanRight', $event)"
-      @onPanUp="log('onPanUp', $event)"
-      @onPanDown="log('onPanDown', $event)"
-    >
-      <div :style="style">1</div>
-    </Gesture>
+    <Tabs :tabs="tabs">
+      <div key="t1"><p>content1</p></div>
+      <div key="t2"><p>content2</p></div>
+      <div key="t3"><p>content3</p></div>
+      <div key="t4"><p>content4</p></div>
+      <div key="t5"><p>content5</p></div>
+    </Tabs>
   </div>
 </template>
 
 <script>
 import VRow from '@components/row'
 import VCol from '@components/col'
-// import { Gesture } from '@components'
-import Gesture from 'euv-gesture'
+import { Tabs } from '@components'
 
 export default {
   name: 'demo',
   data () {
     return {
-      transform: null,
-      baseStyle: {
-        width: '100px',
-        height: '100px',
-        background: 'red'
+      cV: this.value,
+      tabs: [
+        { key: 't1', title: 't1' },
+        { key: 't2', title: 't2' },
+        { key: 't3', title: 't3' },
+        { key: 't4', title: 't4' },
+        { key: 't5', title: 't5' }
+      ],
+      a: {
+        b: {
+          c: 'lalalal'
+        }
       }
+    }
+  },
+  props: {
+    value: {
+      type: String,
+      default: ''
     }
   },
   computed: {
-    style () {
-      let transform = this.transform
-      return {
-        transform,
-        ...this.baseStyle
-      }
-    }
   },
   methods: {
-    test () {
-      console.log('touch start')
-    },
-    log (type, ...args) {
-      console.log(args)
-      window.requestAnimationFrame(() => {
-        this.doTransform(type, ...args)
+    handleInput (e) {
+      const value = e.target.value
+      this.$nextTick(() => {
+        this.cV = value.slice(0, 2)
+        this.$emit('input', this.cV)
       })
-    },
-    doTransform (type, ...args) {
-      if (type === 'onPinch') {
-        const { scale } = args[0]
-        this._scale = scale
-      }
-      if (type === 'onRotate') {
-        const { rotation } = args[0]
-        this._rotation = rotation
-      }
-      if (type === 'onPan') {
-        const { x, y } = args[0].moveStatus
-        this._x = x
-        this._y = y
-      }
-      if (type === 'onPanEnd' || type === 'onPanCancel') {
-        // const { x, y } = args[0].moveStatus
-        this._x = 0
-        this._y = 0
-      }
-      let transform = []
-      this._scale && transform.push(`scale(${this._scale})`)
-      this._rotation && transform.push(`rotate(${this._rotation}deg)`)
-      typeof this._x === 'number' && transform.push(`translateX(${this._x}px)`)
-      typeof this._y === 'number' && transform.push(`translateY(${this._y}px)`)
-      transform = transform.join(' ')
-      this.transform = transform
     }
   },
   components: {
     VRow,
     VCol,
-    Gesture
+    Tabs
   }
 }
 </script>

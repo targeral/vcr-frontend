@@ -3,6 +3,7 @@
     <FlexItem v-for="link of links" :key="link.url" class="links-item">
       <router-link :to="link.url">{{ link.name }}</router-link>
     </FlexItem>
+    <img :src="a && a.b && a.b.c" alt="">
   </Flex>
 </template>
 
@@ -18,7 +19,12 @@
             name: '流量统计',
             url: '/dashboard'
           }
-        ]
+        ],
+        a: {
+          b: {
+            c: 'lalalal'
+          }
+        }
       }
     },
     components: {

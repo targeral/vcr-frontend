@@ -8,6 +8,7 @@ import Navbar from './navbar'
 import PullToRefresh from './pull-to-refresh'
 import Echart from './echart'
 import Gesture from './gesture'
+import Tabs from './tabs'
 
 export {
   Flex,
@@ -19,5 +20,6 @@ export {
   Badge,
   Navbar,
   PullToRefresh,
-  Gesture
+  Gesture,
+  Tabs
 }
